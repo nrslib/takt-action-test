@@ -1,0 +1,26 @@
+name: TAKT
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  takt:
+    if: contains(github.event.comment.body, '@takt')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run TAKT
+        uses: nrslib/takt-action@main
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: test
+          log_output: 'true'
