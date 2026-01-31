@@ -22,4 +22,5 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.TAKT_ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          takt_version: git
           log_output: 'true'
